@@ -1,12 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Hub PWA</title>
+    <title>Home Hub PWA - Enhanced</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
+
 <body>
-    <h1>Welcome to Your Home Hub PWA</h1>
-    <p>We’re setting up your home hub system here.</p>
+    <header>
+        <h1>Home Hub</h1>
+        <button id="homeAwayToggle" class="status-toggle" onclick="toggleHomeAway()">Home</button>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="#devices"><i class="fas fa-lightbulb"></i> Devices</a></li>
+            <li><a href="#tasks"><i class="fas fa-tasks"></i> Task Manager</a></li>
+            <li><a href="#appliances"><i class="fas fa-tools"></i> Appliance List</a></li>
+            <li><a href="#shoppingList"><i class="fas fa-shopping-cart"></i> Shopping List</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Dashboard Section -->
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <div id="statusOverview">
+                <p>Home Status: <span id="statusDisplay">Home</span></p>
+                <p>Current Task: <span id="currentTask">No tasks assigned</span></p>
+            </div>
+            <button id="generateQRCodeBtn" class="qr-button" onclick="generateHomeOverviewQRCode()">Generate Home Overview QR Code</button>
+        </section>
+
+        <!-- Devices Section -->
+        <section id="devices">
+            <h2>Devices</h2>
+            <div id="devicesList">
+                <div class="device">
+                    <h3>Philips Hue Lights</h3>
+                    <div class="device-control">
+                        <button onclick="toggleLight('philipsHue')">Toggle On/Off</button>
+                        <button onclick="setHueLightColor('philipsHue')">Set Color</button>
+                    </div>
+                </div>
+                <div class="device">
+                    <h3>Ring Doorbell Camera</h3>
+                    <button onclick="showCameraFeed('ring')">Show Feed</button>
+                </div>
+                <div class="device">
+                    <h3>Blink Outdoor Cameras</h3>
+                    <button onclick="showCameraFeed('blink')">Show Feed</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Task Manager Section -->
+        <section id="tasks">
+            <h2>Task Manager</h2>
+            <div id="taskList">
+                <div class="task">
+                    <h4>Task 1: Replace Air Filter</h4>
+                    <p>Priority: <span class="priority high">High</span></p>
+                    <p>Status: <span class="status">In Progress</span></p>
+                    <button onclick="printTask('task1')">Print Task Ticket</button>
+                </div>
+            </div>
+            <button id="addTaskBtn" onclick="addNewTask()">Add Task</button>
+        </section>
+
+        <!-- Appliance List Section -->
+        <section id="appliances">
+            <h2>Appliance List</h2>
+            <button id="addNewApplianceBtn" onclick="launchGoogleLens()">Add New Appliance or Guide</button>
+            <div id="applianceDetails">
+                <!-- Example appliance detail -->
+                <div class="appliance">
+                    <h3>Refrigerator</h3>
+                    <p>Location: Guest room mini-kitchen</p>
+                    <a href="https://manufacturer.com/refrigerator-guide">User Guide</a>
+                    <button onclick="generateQRCode('refrigerator')">Generate QR Code</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shopping List Section -->
+        <section id="shoppingList">
+            <h2>Shopping List</h2>
+            <div id="shoppingItems">
+                <div class="shopping-item">
+                    <p>Item: Laundry Detergent</p>
+                    <button onclick="addToAmazonCart('Laundry Detergent')">Add to Cart</button>
+                </div>
+            </div>
+            <button id="addItemBtn" onclick="addItemToShoppingList()">Add Item</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Home Hub PWA. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script src="notifications.js"></script>
+    <script src="voiceIntegration.js"></script>
 </body>
+
 </html>
